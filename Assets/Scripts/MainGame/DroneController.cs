@@ -29,11 +29,6 @@ public class DroneController : MonoBehaviour
     {
         var sceneObject = FindObjectOfType<SceneObject>();
 
-        while (sceneObject == null)
-        {
-            sceneObject = FindObjectOfType<SceneObject>();
-        }
-
         if (sceneObject != null)
         {
             droneBody.GetComponent<MeshRenderer>().material = sceneObject.body;
@@ -41,6 +36,10 @@ public class DroneController : MonoBehaviour
             {
                 fan.GetComponent<MeshRenderer>().material = sceneObject.fans;
             }
+        }
+        else
+        {
+            print("SceneObject not loaded");
         }
     }
 
@@ -81,11 +80,11 @@ public class DroneController : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") < 0)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.z, transform.rotation.eulerAngles.y, 30.0f), Time.fixedDeltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 30.0f), Time.fixedDeltaTime);
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.z, transform.rotation.eulerAngles.y, -30.0f), Time.fixedDeltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -30.0f), Time.fixedDeltaTime);
             }
             if (Input.GetAxis("Vertical") < 0)
             {
