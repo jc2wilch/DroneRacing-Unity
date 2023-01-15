@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
-    public float rotationSpeed = 1f;
+    public float rotationSpeed = 5f;
 
     // Update is called once per frame
     void FixedUpdate()
