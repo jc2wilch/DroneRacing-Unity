@@ -42,24 +42,6 @@ public class CameraController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(drone.position - transform.position, Vector3.up); // calculate the target rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime); // interpolate the rotation towards the target rotation
             
-            
-            
-            /*
-            if (customizeCanvas.gameObject.activeInHierarchy == false)
-            {
-                customizeCanvas.gameObject.SetActive(true);
-                bodyColorButton.gameObject.SetActive(true);
-                fanColorButton.gameObject.SetActive(true);
-            }
-            
-            timer -= Time.deltaTime; // decrement the timer
-            if (timer <= 0) // if the timer has reached zero
-            {
-                currentAlpha = Mathf.Lerp(currentAlpha, 1.0f, fadeInSpeed * Time.deltaTime); // interpolate the current alpha towards 1
-                customizeCanvas.interactable = true;
-                customizeCanvas.alpha = currentAlpha; // set the canvas group's alpha to the current alpha
-            }
-            */
         }
         else
         {

@@ -50,26 +50,23 @@ public class DroneController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // calculate the desired movement direction based on the input
-        //Vector3 movement = new Vector3(horizontalInput, 0.0f, verticalInput);
-
         // get the drone's forward & right directions
         Vector3 droneForward = transform.forward;
         Vector3 droneRight = transform.right;
 
-        // project the movement input onto the drone's forward direction
+        // project movement input onto drone's forward direction
         Vector3 movement = Vector3.ProjectOnPlane(droneForward, Vector3.up) * verticalInput + Vector3.ProjectOnPlane(transform.right, Vector3.up) * horizontalInput;
 
-        // apply a force to the drone to move it in the desired direction
+        // apply force to the drone to move it in the correct direction
         GetComponent<Rigidbody>().AddForce(movement * force);
 
-        // if the player is holding down the jump button, apply an upward force to the drone to make it fly
+        // if the player is holding down jump button, apply an upward force to the drone to make it fly
         if (Input.GetButton("Jump"))
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * lift);
         }
 
-        // if the player is holding down the control button, apply a downward force to the drone to make it go down
+        // if the player is holding down control button, apply a downward force to the drone to make it go down
         if (Input.GetButton("Control"))
         {
             GetComponent<Rigidbody>().AddForce(Vector3.down * lift);
